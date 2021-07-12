@@ -1,0 +1,135 @@
+HTML
+
+<script
+src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js">
+</script>
+<h1>RAINBOW FILTER</h1>
+<canvas id="can">
+  </canvas>
+<input type="file"
+       multiple="false"
+       accept="image/*"
+       id="finput"
+       onchange="upload()">
+<input type="button"
+       value="makerainbow"
+       onclick="makeRainbow()">
+       
+  
+CSS
+
+
+h1{
+  text-align:center;
+}
+body{
+  background-color:lightblue;
+}
+
+
+JAVASCRIPT
+
+
+var image;
+var imgcanvas;
+function upload(){
+  imgcanvas=document.getElementById("can");
+  var fileinput=document.getElementById("finput");
+  image=new SimpleImage(fileinput);
+  image.drawTo(imgcanvas);
+  
+}
+function makeRainbow(){
+  h=image.getHeight();
+  for(var pixel of image.values()){
+    var y =pixel.getY();
+    var avg=(pixel.getRed()+pixel.getBlue()+pixel.getGreen())/3;
+    if(y<h/7){
+      if(avg<128){
+        pixel.setRed(2*avg);
+        pixel.setGreen(0);
+        pixel.setBlue(0);
+      }
+      else{
+        pixel.setRed(255);
+        pixel.setGreen(2*avg-255);
+        pixel.setBlue(2*avg-255);
+      }
+    }
+      if(y>=h/7 && y<2*h/7){
+      if(avg<128){
+        pixel.setRed(2*avg);
+        pixel.setGreen(0.8*avg);
+        pixel.setBlue(0);
+      }
+      else{
+        pixel.setRed(255);
+        pixel.setGreen(1.2*avg-51);
+        pixel.setBlue(2*avg-255);
+      }
+    }
+      if(y>=2*h/7 && y<3*h/7){
+      if(avg<128){
+        pixel.setRed(2*avg);
+        pixel.setGreen(2*avg);
+        pixel.setBlue(0);
+      }
+      else{
+        pixel.setRed(255);
+        pixel.setGreen(255);
+        pixel.setBlue(2*avg-255);
+      }
+    }
+      if(y>=3*h/7 && y<4*h/7){
+      if(avg<128){
+        pixel.setRed(0);
+        pixel.setGreen(2*avg);
+        pixel.setBlue(0);
+      }
+      else{
+        pixel.setRed(2*avg-255);
+        pixel.setGreen(255);
+        pixel.setBlue(2*avg-255);
+      }
+    }
+      if(y>=4*h/7 && y<5*h/7){
+      if(avg<128){
+        pixel.setRed(0);
+        pixel.setGreen(0);
+        pixel.setBlue(2*avg);
+      }
+      else{
+        pixel.setRed(2*avg-255);
+        pixel.setGreen(2*avg-255);
+        pixel.setBlue(255);
+      }
+    }
+      if(y>=5*h/7 && y<6*h/7){
+      if(avg<128){
+        pixel.setRed(0.8*avg);
+        pixel.setGreen(0);
+        pixel.setBlue(2*avg);
+      }
+      else{
+        pixel.setRed(1.2*avg-51);
+        pixel.setGreen(2*avg-255);
+        pixel.setBlue(255);
+      }
+    }
+      if(y>=6*h/7){
+      if(avg<128){
+        pixel.setRed(1.6*avg);
+        pixel.setGreen(0);
+        pixel.setBlue(1.6*avg);
+      }
+      else{
+        pixel.setRed(0.4*avg+153);
+        pixel.setGreen(2*avg-255);
+        pixel.setBlue(0.4*avg+153);
+      }
+    }
+    
+  }
+  imgcanvas=document.getElementById("can");
+  image.drawTo(imgcanvas);
+}   
