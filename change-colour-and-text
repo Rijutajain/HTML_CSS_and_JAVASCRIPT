@@ -1,0 +1,50 @@
+HTML
+
+
+<div id="div1" class="orangeback">
+  i think i should sleep
+</div>
+<div id="div2" class="magentaback">
+  no, i have some work
+</div>
+<input type="button"
+       value="color change"
+       onclick="changeColor()">
+<input type="button"
+       value="change Text"
+       onclick="changeText()">
+       
+       
+       
+CSS
+
+
+.orangeback{
+  background-color:orange;
+}
+.magentaback{
+  background-color:magenta;
+}
+.blueback{
+  background-color:blue;
+}
+
+
+
+JAVASCRIPT
+
+
+function changeColor(){
+  var divElement1=
+    document.getElementById("div1");
+    var divElement2=
+    document.getElementById("div2");
+    divElement1.className="blueback";
+    divElement2.className="orangeback";
+}
+function changeText(){
+  var dd1=document.getElementById("div1");
+   var dd2=document.getElementById("div2");
+  dd1.innerHTML="Bonjour";
+  dd2.innerHTML="Sayonara";
+}
