@@ -1,0 +1,95 @@
+HTML
+
+<script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js">
+</script>
+<h1>FILTER FUN</h1>
+<h2>Isn't its exciting to see your webpage image change filters likewise you use in instagram or snapchat!!!!</h2>
+<canvas id="can">
+</canvas>
+<input type="file" multiple="false"
+       accept="image/*" id="finput"
+       onchange="upload()">
+<input type="button" value="make grayscale"
+       onclick="makeGray()">
+<input type="button" value="make Red"
+       onclick="makeRed()">
+<input type="button" value="make tricolor"
+       onclick="makeTricolor()"> 
+<input type="reset" value="Reset"
+       onclick="resetImage">
+       
+       
+CSS
+
+
+h1{
+  text-align:center;
+  color:blue;
+  text-decorations:underline;
+}
+body{
+  background-color: lightgray;
+}
+h2{
+  text-align:center;
+}
+
+
+
+JAVASCRIPT
+
+
+var image
+var imgcanvas
+var fileinput
+function upload(){
+imgcanvas=document.getElementById("can");
+fileinput=document.getElementById("finput");
+  image= new SimpleImage(fileinput);
+  image.drawTo(imgcanvas);
+}
+function makeGray(){
+  
+  for(var pixel of image.values()){
+    var avg=(pixel.getRed()+pixel.getGreen()+pixel.getBlue())/3;
+    pixel.setRed(avg);
+    pixel.setGreen(avg);
+    pixel.setBlue(avg);
+  }
+  imgcanvas=document.getElementById("can");
+  image.drawTo(imgcanvas);
+  
+}
+function makeRed(){
+  for(var pixel of image.values()){
+    pixel.setBlue(pixel.getBlue());
+    pixel.setGreen(pixel.getGreen());
+    pixel.setRed(255);
+  }
+   imgcanvas=document.getElementById("can");
+  image.drawTo(imgcanvas);
+  
+}
+function makeTricolor(){
+  w=image.getWidth();
+  for(var pixel of image.values()){
+     x=pixel.getX();
+    if(x<w/3){
+      pixel.setRed(255);
+    
+    }
+    if(x>=w/3 && x<2*w/3){
+     pixel.setGreen(255);
+   
+
+    }
+    if(x>=2*w/3){
+      pixel.setBlue(255);
+   
+    }
+  }
+      imgcanvas=document.getElementById("can");
+  image.drawTo(imgcanvas);
+}
+
+
